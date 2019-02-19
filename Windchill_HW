@@ -1,0 +1,72 @@
+/*
+Filename: hw6_windChill_abarajas.cpp
+Author: Alexis Barajas
+Desc: Write a program that computes the windchill index for a given temperature, input by the user. Your
+code should ensure that the restriction on the temperature is not violated.
+Date: 2/18/19
+
+*/
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+//Prototypes
+void intro();
+float getTemp();
+float computeWC(float);
+void showWC(float, float);
+
+int main ()
+{
+    float temp;
+    float windChill;
+    
+    intro();
+    temp = getTemp();
+    windChill = computeWC(temp);
+    showWC(temp, windChill);
+
+    return 0;
+
+
+
+}
+
+//Function definitions
+
+void intro()
+{
+    cout << "\t This program will calculate windchill index for a given temperature.\n";
+    return;
+}
+
+float getTemp()
+{
+    int degCel;
+    do {
+    cout << "Please enter a temperature in Celsius that is less than or equal to 10.\n";
+    cin >> degCel;
+    }
+    while (degCel >= 10);
+    return degCel;
+}
+
+float computeWC(float degCel)
+{
+    float wc;
+        wc = 13.12 + 0.6215 * degCel - 11.37 * pow(3,0.16) + 0.3965 * degCel * pow(3,0.016);
+    // = 13.12 + 0.6215 * getTemp - 11.37 * pow(3,0.16) + 0.3965 * getTemp * pow(3,0.016)
+    return wc;
+    
+}
+void showWC(float degCel, float wc)
+{
+    cout << "The original temperature is " << degCel << ".\n" << endl;
+    cout << "The windchill index is " << wc << ".\n" << endl;
+    return;
+    
+    
+}
+
